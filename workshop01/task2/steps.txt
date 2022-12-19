@@ -1,0 +1,13 @@
+# Create a network
+1. docker network create mynet
+
+# Create a volume
+2. docker volume create data-vol
+
+# Pull DB image and run
+3. docker pull stackupiss/northwind-db:v1
+4. docker run -d --network mynet --name mydb -v data-vol:/var/lib/mysql stackupiss/northwind-db:v1
+
+# Pull app image and run
+5. docker pull stackupiss/northwind-app:v1
+6. docker run -d -p 8080:3000 --network mynet -e DB_HOST=mydb -e DB_USER=root -e DB_PASSWORD=changeit --name myapp stackupiss/northwind-app:v1
