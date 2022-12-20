@@ -6,7 +6,7 @@ metadata:
     name: bggapp-svc
   namespace: bggns
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     name: bggapp-po
   ports:
