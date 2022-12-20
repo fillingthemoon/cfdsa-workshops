@@ -6,7 +6,7 @@ metadata:
     name: bggapp-svc
   namespace: bggns
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     name: bggapp-po
   ports:
