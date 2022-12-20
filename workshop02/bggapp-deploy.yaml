@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bggapp-deploy
+  labels:
+    name: bggapp-deploy
+  namespace: bggns
+spec:
+  replicas: 3
+  selector: 
+    matchLabels:
+      name: bggapp-po
+  template:
+    metadata:
+      name: bggapp-po
+      labels:
+        name: bggapp-po
+    spec:
+      containers:
+      - name: bggapp-po
+        image: stackupiss/bgg-backend:v1
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: bgg-cm
+        - secretRef:
+            name: bgg-secret
+        ports:
+          - containerPort: 3000
+            protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 3000
