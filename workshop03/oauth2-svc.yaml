@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: oath2-svc
+  labels:
+    name: oauth2-svc
+    app: codeserver
+  namespace: cs
+spec:
+  type: ClusterIP
+  selector:
+    name: oauth2-po
+    app: codeserver
+  ports:
+  - port: 4180
+    targetPort: 4180

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oauth2-deploy
+  labels:
+    name: oauth2-deploy
+    app: codeserver
+  namespace: cs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: oauth2-po
+      app: codeserver
+  template:
+    metadata:
+      name: oauth2-po
+      labels:
+        name: oauth2-po
+        app: codeserver
+    spec:
+      containers:
+      - name: oauth2-container
+        image: bitnami/oauth2-proxy:7.2.1
+        imagePullPolicy: IfNotPresent
+        args:
+        - --provider=github
+        - --email-domain=*
+        - --upstream=file:///dev/null
+        - --http-address=0.0.0.0:4180
+        envFrom:
+        - secretRef:
+            name: oauth2-secret
+        ports:
+        - containerPort: 4180

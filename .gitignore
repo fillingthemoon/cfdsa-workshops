@@ -1,8 +1,13 @@
 .DS_Store
+.env
 TODO
 misc
 notes.txt
 cfdsa
+
 workshop02/config.yaml
 workshop02/secrets.yaml
 workshop02/steps.txt
+
+workshop03/steps.txt
+*-secret.yaml

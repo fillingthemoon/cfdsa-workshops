@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: oauth2-ing
+  labels:
+    name: oauth2-ing
+    app: codeserver
+  namespace: cs
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: cs-104.248.98.92.nip.io
+    http:
+      paths:
+      - path: /oauth2
+        pathType: Prefix
+        backend:
+          service:
+            name: oath2-svc
+            port:
+              number: 4180
