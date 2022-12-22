@@ -3,11 +3,10 @@
 TODO
 misc
 notes.txt
-cfdsa
 
 workshop02/config.yaml
-workshop02/secrets.yaml
-workshop02/steps.txt
+*secrets.yaml
 
-workshop03/steps.txt
+*steps.txt
+
 *-secret.yaml
